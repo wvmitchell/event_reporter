@@ -45,11 +45,11 @@ class EventReporter
   end
 
   def help(options=nil)
-    options.nil? ? ['load', 'queue', 'find'] : describe_command(option[1])
+    options.nil? ? HelpMessage.new : HelpMessage.new(options)
   end
 
   def describe_command(command)
-    
+
   end
 
   def queue(options)
