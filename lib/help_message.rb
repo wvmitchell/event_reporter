@@ -3,7 +3,7 @@ class HelpMessage
   attr_reader :message_to_output
 
   def initialize(code=nil)
-    @message_to_output = code.nil? ? HelpMessage.default_message : interpret_code(code.downcase)
+    @message_to_output = code.nil? ? HelpMessage.default_message : interpret_code(code[0].downcase)
   end
 
   def self.default_message
