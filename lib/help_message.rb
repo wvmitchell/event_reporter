@@ -1,3 +1,5 @@
+require "pry"
+
 class HelpMessage
 
   attr_reader :message_to_output

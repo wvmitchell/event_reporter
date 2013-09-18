@@ -1,5 +1,7 @@
 require 'csv'
+require 'pry'
 require './lib/help_message'
+require './lib/queue'
 
 class EventReporter
 
@@ -24,7 +26,7 @@ class EventReporter
   end
 
   def other_command(command)
-    command == 'quit' ? (puts "Goodbye!") : (puts "Sorry, I don't have a #{command_parts[0]} function!")
+    command == 'quit' ? (puts "Goodbye!") : (puts "Sorry, I don't have a #{command} function!")
   end
 
   def command_valid(command)
@@ -34,15 +36,20 @@ class EventReporter
 
   def run_valid_command(parts_array)
     case parts_array[0]
-    when 'load' then load(parts_array[1..-1])
+    when 'load' then options?(parts_array[1..-1]) ? load(parts_array[1]) : load
     when 'help' then help(parts_array[1..-1])
     when 'queue' then queue(parts_array[1..-1])
     when 'find' then find(parts_array[1..-1])
     end  
   end
 
-  def load(filename=nil)
+  def options?(array)
+    !array.empty?
+  end
+
+  def load(filename='./event_attendees_small.csv')
     @queue_object = Queue.new(filename)
+    @queue_object ? (puts "Successfully loaded #{filename}") : (puts "Sorry, couldn't load #{filename}")
   end
 
   def help(options)
