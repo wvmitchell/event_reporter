@@ -22,7 +22,7 @@ class QueueTest < MiniTest::Unit::TestCase
       assert_kind_of Attendee, attendee
     end
   end
-
+  
   def test_it_does_return_a_correct_count
     q = Queue.new
     assert_equal q.attendees.count, q.count
@@ -39,4 +39,16 @@ class QueueTest < MiniTest::Unit::TestCase
     printed = q.print
     assert_kind_of String, printed
   end
+=begin
+
+  def test_it_does_order_attendees_by_attribute
+    q = Queue.new
+    attributes = ['regdate', 'first_name', 'last_name', 'state', 'zipcode']
+    attributes.each do |attribute|
+      array = q.sort_by(attribute)
+      assert_equal
+    end
+  end
+
+=end
 end

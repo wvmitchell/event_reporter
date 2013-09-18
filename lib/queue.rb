@@ -4,7 +4,7 @@ class Queue
 
   attr_reader :attendees
 
-  def initialize(filename='../event_attendees_small.csv')
+  def initialize(filename='event_attendees_small.csv')
     @attendees = create_attendees_array filename
   end
 
@@ -33,12 +33,14 @@ class Queue
     @attendees.clear
   end
 
-  def print
+  def print(att=nil)
     return_string = "#{''.rjust(155, '-') + "\n" + 'LAST NAME'.ljust(15, " ") + 'FIRST NAME'.ljust(15, " ") + 'EMAIL ADDRESS'.ljust(35, ' ') +
                        'ZIPCODE'.ljust(10, " ") + 'CITY'.ljust(20, ' ') + 'STATE'.ljust(10, ' ') +
                        'ADDRESS'.ljust(35, " ") + 'PHONE'.ljust(15, ' ') + "\n" + ''.rjust(155, '-')}\n"
     
-    @attendees.each do |attendee|
+    attendees_to_print = att.nil? ? @attendees : att
+
+    attendees_to_print.each do |attendee|
       return_string += "#{attendee.last_name.ljust(15, " ") + attendee.first_name.ljust(15, " ") +
                           attendee.email_address.ljust(35, ' ') + attendee.zipcode.to_s.ljust(10, ' ') +
                           attendee.city.ljust(20, " ") + attendee.state.ljust(10, ' ') +
@@ -46,4 +48,13 @@ class Queue
     end
     return_string
   end
+
+  def sort_by(attribute)
+    sorted_attendees = @attendees.sort_by {|attendee| attendee.send("#{attribute}")}
+  end
+
+  def print_by_attribute(attribute)
+    print sort_by(attribute)
+  end
+
 end

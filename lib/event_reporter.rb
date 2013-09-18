@@ -3,10 +3,10 @@ require './lib/help_message'
 
 class EventReporter
 
-  attr_reader :csv
+  attr_reader :queue_object
 
   def initialize
-    @csv = nil
+    @queue_object = nil
   end
 
   def run
@@ -20,7 +20,11 @@ class EventReporter
 
   def execute_command(command)
     command_parts = command.split(' ')
-    command_valid(command_parts[0]) ? run_valid_command(command_parts) : (puts "Sorry, I don't have a #{command_parts[0]} function!")
+    command_valid(command_parts[0]) ? run_valid_command(command_parts) : other_command(command_parts[0])
+  end
+
+  def other_command(command)
+    command == 'quit' ? (puts "Goodbye!") : (puts "Sorry, I don't have a #{command_parts[0]} function!")
   end
 
   def command_valid(command)
@@ -37,8 +41,8 @@ class EventReporter
     end  
   end
 
-  def load(filename)
-    @csv = CSV.open filename, headers: true, header_converters: :symbol
+  def load(filename=nil)
+    @queue_object = Queue.new(filename)
   end
 
   def help(options)
