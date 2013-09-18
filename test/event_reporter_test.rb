@@ -1,7 +1,7 @@
 require 'minitest'
 require 'minitest/autorun'
+require 'minitest/pride'
 require './lib/event_reporter'
-require './lib/help_message'
 
 class EventReporterTest < MiniTest::Unit::TestCase
 

@@ -1,5 +1,6 @@
 require 'minitest'
 require 'minitest/autorun'
+require 'minitest/pride'
 require './lib/help_message'
 
 class HelpMessageTest < MiniTest::Unit::TestCase
