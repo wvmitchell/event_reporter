@@ -57,9 +57,20 @@ class EventReporter
   end
 
   def queue(options)
+    case options[0]
+    when 'count' then puts @queue_object.count
+    when 'clear' then clear_queue
+    when 'print' then (options.length == 1 ? (puts @queue_object.print) : (puts @queue_object.print_by_attribute(options[2])))
+    end
+  end
+
+  def clear_queue
+    @queue_object.clear
+    puts "The queue has been cleared"
   end
 
   def find(options)
+    puts @queue_object.print_find(options[0], options[1])
   end
 
 end

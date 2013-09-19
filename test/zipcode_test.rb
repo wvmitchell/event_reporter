@@ -19,4 +19,10 @@ class ZipcodeTest < MiniTest::Unit::TestCase
     assert_equal "00124", zip.digits
   end
 
+  def test_it_should_compare_two_zipcodes
+    zip = Zipcode.new("00001")
+    zip2 = Zipcode.new("00002")
+    assert zip < zip2
+  end
+  
 end

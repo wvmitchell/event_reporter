@@ -1,9 +1,19 @@
 class Zipcode
-
+  include Comparable
   attr_reader :digits
 
   def initialize(num_string = "00000")
     @digits = clean(num_string)
+  end
+
+  def <=>(other_zipcode)
+    if self.digits < other_zipcode.digits
+      -1
+    elsif self.digits > other_zipcode.digits
+      1
+    else
+      0
+    end
   end
 
   private

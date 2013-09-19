@@ -50,4 +50,15 @@ class QueueTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_it_does_find_all_by_attribute
+    found_attendees = @q.find_by_attribute('zipcode', '20009')
+    assert found_attendees.all? do |attendee|
+      attendee.zipcode == '20009'
+    end
+  end
+
+  def test_it_does_return_a_string_on_print_find
+    assert_kind_of String, @q.print_find('last_name', 'Davis')
+  end
+
 end
