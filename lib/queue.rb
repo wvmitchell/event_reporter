@@ -22,7 +22,7 @@ class Queue
       arguments_hash[:email_address] = row[:email_address]
       arguments_hash[:homephone]     = clean_phone row[:homephone]
       arguments_hash[:street]        = row[:street]
-      arguments_hash[:city]          = row[:city]
+      arguments_hash[:city]          = clean_city row[:city]
       arguments_hash[:state]         = row[:state]
       arguments_hash[:zipcode]       = clean_zipcode row[:zipcode]
       Attendee.new arguments_hash
@@ -35,6 +35,10 @@ class Queue
 
   def clear
     @attendees.clear
+  end
+
+  def clean_city(city_string)
+    city_string.nil? ? City.new : City.new(city_string)
   end
 
   def clean_date(date_string)
@@ -68,7 +72,7 @@ class Queue
       return_string += attendee.first_name.ljust(15, " ")
       return_string += attendee.email_address.ljust(35, ' ')
       return_string += attendee.zipcode.digits.ljust(10, ' ')
-      return_string += attendee.city.ljust(20, " ")
+      return_string += attendee.city.city_name.ljust(20, " ")
       return_string += attendee.state.ljust(10, ' ')
       return_string += attendee.street.ljust(35, " ")
       return_string += attendee.homephone.digits.ljust(15, ' ') + "\n"
