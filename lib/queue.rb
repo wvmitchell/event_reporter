@@ -3,6 +3,7 @@ require 'pry'
 require './lib/attendee'
 require './lib/phone_number'
 require './lib/zipcode'
+require './lib/city'
 
 class Queue
 
@@ -62,7 +63,7 @@ class Queue
 
 
 
-  
+
   private
 
   def clean_city(city_string)

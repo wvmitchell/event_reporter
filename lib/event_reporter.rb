@@ -13,7 +13,7 @@ class EventReporter
 
   def run
     command = ''
-    while command != 'quit'
+    until command == 'quit'
       puts "What would you like to do?"
       command = gets.chomp
       execute_command command
