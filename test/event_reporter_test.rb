@@ -15,10 +15,10 @@ class EventReporterTest < MiniTest::Unit::TestCase
     assert_false er.command_valid('potato')
   end
 
-  def test_load_does_create_queue
-    er = EventReporter.new
-    er.load('event_attendees_small.csv')
-    assert_kind_of Queue, er.queue_object
-  end
+  #def test_load_does_create_queue
+  #  er = EventReporter.new
+  #  er.load('event_attendees_small.csv')
+  #  assert_kind_of Queue, er.queue_object
+  #end
 
 end

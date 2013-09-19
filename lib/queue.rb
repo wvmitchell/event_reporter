@@ -2,6 +2,7 @@ require "csv"
 require 'pry'
 require './lib/attendee'
 require './lib/phone_number'
+require './lib/zipcode'
 
 class Queue
 
@@ -45,8 +46,7 @@ class Queue
   end
 
   def clean_zipcode(zip_string)
-    confirmed_zip_string = zip_string.nil? ? "" : zip_string
-    confirmed_zip_string.to_s.rjust(5, '0')
+    zip_string.nil? ? Zipcode.new : Zipcode.new(zip_string)
   end
 
   def print(att=nil)

@@ -10,11 +10,11 @@ class PhoneNumber
     digits.length
   end
 
+  private
   def clean_phone(confirmed_phone_string)
     only_digits = confirmed_phone_string.tr('^0-9', '')
     only_digits = dispose_bad_values only_digits
     only_digits = truncate_country_code only_digits
-    #only_digits.length == 10 ? only_digits : only_digits[-10..-1]
   end
 
   def dispose_bad_values(string)
