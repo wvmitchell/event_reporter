@@ -12,45 +12,12 @@ class Queue
     @attendees = create_attendees_array filename
   end
 
-  def create_attendees_array(filename)
-    csv = CSV.open filename, headers: true, header_converters: :symbol
-    csv.collect do |row|
-      arguments_hash = {}
-      arguments_hash[:regdate]       = clean_date row[:regdate]
-      arguments_hash[:first_name]    = row[:first_name]
-      arguments_hash[:last_name]     = row[:last_name]
-      arguments_hash[:email_address] = row[:email_address]
-      arguments_hash[:homephone]     = clean_phone row[:homephone]
-      arguments_hash[:street]        = row[:street]
-      arguments_hash[:city]          = clean_city row[:city]
-      arguments_hash[:state]         = row[:state]
-      arguments_hash[:zipcode]       = clean_zipcode row[:zipcode]
-      Attendee.new arguments_hash
-    end
-  end
-
   def count
     @attendees.count
   end
 
   def clear
     @attendees.clear
-  end
-
-  def clean_city(city_string)
-    city_string.nil? ? City.new : City.new(city_string)
-  end
-
-  def clean_date(date_string)
-    DateTime.strptime(date_string, "%m/%d/%y %H:%M")
-  end
-
-  def clean_phone(phone_string)
-    PhoneNumber.new(phone_string)
-  end
-
-  def clean_zipcode(zip_string)
-    zip_string.nil? ? Zipcode.new : Zipcode.new(zip_string)
   end
 
   def print(att=nil)
@@ -92,6 +59,28 @@ class Queue
     print find_by_attribute(attribute, value)
   end
 
+
+
+
+  
+  private
+
+  def clean_city(city_string)
+    city_string.nil? ? City.new : City.new(city_string)
+  end
+
+  def clean_date(date_string)
+    DateTime.strptime(date_string, "%m/%d/%y %H:%M")
+  end
+
+  def clean_phone(phone_string)
+    PhoneNumber.new(phone_string)
+  end
+
+  def clean_zipcode(zip_string)
+    zip_string.nil? ? Zipcode.new : Zipcode.new(zip_string)
+  end
+
   def find_by_attribute(attribute, value)
     case attribute
     when 'first_name' then @attendees.find_all {|attendee| attendee.first_name == value}
@@ -105,4 +94,20 @@ class Queue
     end
   end
 
+   def create_attendees_array(filename)
+    csv = CSV.open filename, headers: true, header_converters: :symbol
+    csv.collect do |row|
+      arguments_hash = {}
+      arguments_hash[:regdate]       = clean_date row[:regdate]
+      arguments_hash[:first_name]    = row[:first_name]
+      arguments_hash[:last_name]     = row[:last_name]
+      arguments_hash[:email_address] = row[:email_address]
+      arguments_hash[:homephone]     = clean_phone row[:homephone]
+      arguments_hash[:street]        = row[:street]
+      arguments_hash[:city]          = clean_city row[:city]
+      arguments_hash[:state]         = row[:state]
+      arguments_hash[:zipcode]       = clean_zipcode row[:zipcode]
+      Attendee.new arguments_hash
+    end
+  end
 end

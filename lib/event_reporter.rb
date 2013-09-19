@@ -20,6 +20,9 @@ class EventReporter
     end
   end
 
+
+  private
+
   def execute_command(command)
     command_parts = command.split(' ')
     command_valid(command_parts[0]) ? run_valid_command(command_parts) : other_command(command_parts[0])
@@ -74,6 +77,3 @@ class EventReporter
   end
 
 end
-
-#e = EventReporter.new
-#e.run
