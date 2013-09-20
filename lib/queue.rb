@@ -19,6 +19,7 @@ class Queue
 
   def clear
     @attendees.clear
+    "The Queue has been cleared"
   end
 
   def print(att=nil)
