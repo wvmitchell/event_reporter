@@ -1,5 +1,5 @@
 class PhoneNumber
-
+  include Comparable
   attr_reader :digits
 
   def initialize(number_string="0000000000")
@@ -8,6 +8,10 @@ class PhoneNumber
 
   def length
     digits.length
+  end
+
+  def <=>(other_phone)
+    digits <=> other_phone.digits
   end
 
   private

@@ -99,15 +99,15 @@ class Queue
     csv = CSV.open filename, headers: true, header_converters: :symbol
     csv.collect do |row|
       arguments_hash = {}
-      arguments_hash[:regdate]       = clean_date row[:regdate]
-      arguments_hash[:first_name]    = row[:first_name]
-      arguments_hash[:last_name]     = row[:last_name]
-      arguments_hash[:email_address] = row[:email_address]
-      arguments_hash[:homephone]     = clean_phone row[:homephone]
-      arguments_hash[:street]        = row[:street]
-      arguments_hash[:city]          = clean_city row[:city]
-      arguments_hash[:state]         = row[:state]
-      arguments_hash[:zipcode]       = clean_zipcode row[:zipcode]
+      arguments_hash[:regdate]       = clean_date row[:regdate].to_s
+      arguments_hash[:first_name]    = row[:first_name].to_s
+      arguments_hash[:last_name]     = row[:last_name].to_s
+      arguments_hash[:email_address] = row[:email_address].to_s
+      arguments_hash[:homephone]     = clean_phone row[:homephone].to_s
+      arguments_hash[:street]        = row[:street].to_s
+      arguments_hash[:city]          = clean_city row[:city].to_s
+      arguments_hash[:state]         = row[:state].to_s
+      arguments_hash[:zipcode]       = clean_zipcode row[:zipcode].to_s
       Attendee.new arguments_hash
     end
   end

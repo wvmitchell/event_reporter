@@ -1,5 +1,3 @@
-require 'pry'
-
 class Attendee
 
   attr_reader :regdate, :first_name, :last_name, :email_address, :homephone, :street, :city, :state, :zipcode

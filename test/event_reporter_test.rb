@@ -10,11 +10,7 @@ class EventReporterTest < MiniTest::Unit::TestCase
     assert_kind_of EventReporter, er
   end
 
-  def rejects_invalid_commands
-    er = EventReporter.new
-    assert_false er.command_valid('potato')
-  end
-
+  
   #def test_load_does_create_queue
   #  er = EventReporter.new
   #  er.load('event_attendees_small.csv')

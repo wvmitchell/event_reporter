@@ -30,4 +30,10 @@ class PhoneNumberTest < MiniTest::Unit::TestCase
     phone_num = PhoneNumber.new("13034945255")
     assert_equal "3034945255", phone_num.digits
   end
+
+  def test_it_correctly_compares_numbers
+    phone_num = PhoneNumber.new("2034945255")
+    phone_num2 = PhoneNumber.new("3034945255")
+    assert phone_num < phone_num2, "Comparison is not correct"
+  end
 end
