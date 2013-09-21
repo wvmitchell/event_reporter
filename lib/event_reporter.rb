@@ -117,6 +117,10 @@ class EventReporter
     valid_attribute?(attribute) ? queue_object.print_by_attribute(attribute) : "Invalid print options"
   end
 
+  def valid_attribute?(attribute)
+    [:first_name, :last_name, :email_address, :homephone, :street, :city, :state, :zipcode].include?(attribute.to_sym)
+  end
+
   def find
     queue_object ? queue_object.print_find(secondary_command, command_options) : load_first_error
   end

@@ -16,4 +16,9 @@ class CityTest < MiniTest::Unit::TestCase
     city2= City.new("Chicago")
     assert city < city2
   end
+
+  def test_it_does_capitalize
+    city = City.new("atlanta")
+    assert_equal "Atlanta", city.city_name
+  end
 end

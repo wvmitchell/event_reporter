@@ -14,7 +14,6 @@ class PhoneNumber
     digits <=> other_phone.digits
   end
 
-  private
   def clean_phone(confirmed_phone_string)
     only_digits = confirmed_phone_string.tr('^0-9', '')
     only_digits = dispose_bad_values only_digits
@@ -29,4 +28,7 @@ class PhoneNumber
     string.length == 11 ? string[1..-1] : string 
   end
 
+  def format_print
+    "(#{digits[0..2]}) #{digits[3..5]}-#{digits[6..9]}"
+  end
 end

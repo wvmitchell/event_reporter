@@ -54,4 +54,18 @@ class EventReporterTest < MiniTest::Unit::TestCase
    er.command = ['queue', 'save', 'to', 'filename']
    assert_equal 'Sorry, you need to load in a file first', er.save 
   end
+
+  def test_find_does_return_string
+    er = EventReporter.new
+    er.load 
+    er.command = ['find', 'zipcode', '80303']
+    assert_kind_of String, er.execute_command
+  end
+
+  def test_print_by_attribute_returns_string
+    er = EventReporter.new 
+    er.load
+    er.command = ['queue', 'print', 'by zipcode']
+    assert_kind_of String, er.execute_command
+  end
 end

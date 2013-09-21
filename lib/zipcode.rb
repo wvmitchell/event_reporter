@@ -18,6 +18,7 @@ class Zipcode
 
   private
   def clean(num_string)
+    num_string = num_string.tr('^0-9', '')
     num_string.length > 5 ? "00000" : (pad num_string)
   end
 

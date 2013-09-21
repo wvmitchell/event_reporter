@@ -24,5 +24,10 @@ class ZipcodeTest < MiniTest::Unit::TestCase
     zip2 = Zipcode.new("00002")
     assert zip < zip2
   end
+
+  def test_it_does_create_correct_size_zip_from_blank_space
+    zip = Zipcode.new(" 123")
+    assert_equal "00123", zip.digits 
+  end
   
 end

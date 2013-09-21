@@ -44,7 +44,7 @@ class Queue
       return_string += attendee.city.city_name.ljust(20, " ")
       return_string += attendee.state.ljust(10, ' ')
       return_string += attendee.street.ljust(35, " ")
-      return_string += attendee.homephone.digits.ljust(15, ' ') + "\n"
+    return_string += attendee.homephone.format_print.ljust(15, ' ') + "\n"
     end
     return_string
   end

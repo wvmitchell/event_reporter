@@ -36,4 +36,9 @@ class PhoneNumberTest < MiniTest::Unit::TestCase
     phone_num2 = PhoneNumber.new("3034945255")
     assert phone_num < phone_num2, "Comparison is not correct"
   end
+
+  def test_it_does_format_print_phone_number
+    phone_num = PhoneNumber.new("3037875943")
+    assert_equal "(303) 787-5943", phone_num.format_print
+  end
 end
